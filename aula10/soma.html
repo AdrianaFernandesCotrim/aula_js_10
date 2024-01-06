@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+    function calcula_imc(){
+    var altura = document.imcForm.altura.value;
+    var peso = document.imcForm.peso.value;
+
+    var quadrado = (altura * altura);
+
+    var calculo = (peso/quadrado);
+
+    if(calculo<18.5){
+    alert("IMC: " + calculo + " | Você está abaixo do seu peso ideal!");
+    }
+    else if(calculo>=18.5 && calculo<24.9){ 
+    alert("IMC: " + calculo + " | Você está em seu peso normal!");
+    }
+
+    else if(calculo>=25 && calculo<29.9) {
+    alert("IMC: " + calculo + " | Obesidade Grau 1!");
+    }
+    else if(calculo>=30 && calculo<39.9) {
+    alert("IMC: " + calculo + " | Obesidade Grau 2!");
+    }
+    else if (calculo>40)
+    alert("IMC: " + calculo + " | Obesidade Grau 3!");
+    }
+  </script>  
+</body>
+</html>

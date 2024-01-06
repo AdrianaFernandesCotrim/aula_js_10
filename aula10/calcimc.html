@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <h2>Calculando o IMC</h2>
+  
+  Peso = <input id="inputPeso"> Kg<br><br>
+  
+  Altura = <input id="inputAltura"> cm<br><br>
+  
+  <button>Calcular</button>
+  
+  <script>
+      function pulaLinha() {
+          document.write("<br><br>");
+      }
+  
+      function mostrar(texto) {
+          document.write(texto);
+          pulaLinha();
+      }
+  
+      function tabelaReferencia(){
+          document.write("<hr><h3>Tabela de referência</h3>")
+          mostrar( "Menor que 18,5 = Peso Baixo"+
+                  "<br>Entre 18,5 e 24,9 = Peso normal" +
+                  "<br>Entre 25,0 e 29,9 = Sobrepeso" +
+                  "<br>Emtre 30,0 e 34,9 = Obesidade Grau 1" +
+                  "<br>Emtre 35,0 e 39,9 = Obesidade Grau 2" +
+                  "<br>Maior que 40,0 = Obesidade Grau 3");
+      }
+  
+      function calcImc(peso, altura){
+          return imc=(Math.round(10*peso/(altura**2)))/10;
+      }
+  
+      function pesoMax(){ 
+          return (Math.round(24.9*(alturaInformada()**2)*10)/10);
+      }
+  
+      function pesoMin(){ 
+          return (Math.round(18.5*(alturaInformada()**2)*10)/10); 
+      }
+  
+      function pesoInformado(){
+          return parseInt(inputPeso.value);
+      } 
+  
+      function alturaInformada(){
+          return parseInt(inputAltura.value)/100;
+      } 
+  
+      function calcular(){
+  
+          var imc=calcImc(pesoInformado(), alturaInformada());
+          mostrar("<hr><b>IMC = "+imc+"</b>");
+          document.write(" Classificação = ")
+  
+          if (imc<18.5){
+              mostrar("Peso baixo");
+              mostrar("Cuidado! Você está "+((Math.round(10*(pesoMin()-pesoInformado())))/10)+"kg a baixo do peso ideal!!!");
+              alert("Cuidado! Você está "+((Math.round(10*(pesoMin()-pesoInformado())))/10)+"kg a baixo do peso ideal!!!");
+          }
+          if (imc>=18.5 && imc<25){
+              mostrar("Peso normal");
+              mostrar("Parabéns! Você está dentro do peso ideal para sua altura!");
+              alert("Parabéns! Você está dentro do peso ideal para sua altura!");
+          }
+          if(imc>=25){
+              if (imc>=25 && imc<30){
+                  mostrar("Sobrepeso");
+              }
+              if (imc>=30 && imc<35){
+                  mostrar("Obesidade grau 1");
+              }
+              if (imc>=35 && imc<40){
+                  mostrar("Obesidade grau 2");
+              }
+              if (imc>=40){
+                  mostrar("Obesidade grau 3");
+              }
+              mostrar("Cuidado! Você está "+((Math.round(10*(pesoInformado()-pesoMax())))/10)+"kg a cima do peso ideal!!!");
+              alert("Cuidado! Você está "+((Math.round(10*(pesoInformado()-pesoMax())))/10)+"kg a cima do peso ideal!!!");
+          }
+  
+          mostrar("Busque manter seu peso entre "+pesoMin()+" e "+pesoMax()+" kg.");
+          tabelaReferencia();
+  
+      }
+  
+      var inputPeso = document.querySelector('input[id="inputPeso"]');
+      var inputAltura = document.querySelector('input[id="inputAltura"]');
+      var button = document.querySelector("button");
+  
+      alert("Seja bem vindo(a) a calculadora de IMC, clique em OK para continuar");
+  
+      button.onclick = calcular;
+  
+  
+      </script> 
+  </script>  
+</body>
+</html>
